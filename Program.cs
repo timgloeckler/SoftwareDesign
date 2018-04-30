@@ -1,67 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-
-namespace Aufgabe4_Generic_Tree
+namespace Aufgabe3_Zahlensysteme
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var tree = new TreeNode<String>();
-            var root = tree.CreateNode("root");
-            var child1 = tree.CreateNode("child1");
-            var child2 = tree.CreateNode("child1");
-            root.AppendChild(child1);
-            root.AppendChild(child2);
-            var grand11 = tree.CreateNode("grand11");
-            var grand12 = tree.CreateNode("grand12");
-            var grand13 = tree.CreateNode("grand13");
-            child1.AppendChild(grand11);
-            child1.AppendChild(grand12);
-            child1.AppendChild(grand13);
-            var grand111 = tree.CreateNode("grand111");
-            var grand112 = tree.CreateNode("grand112");
-            grand11.AppendChild(grand111);
-            grand11.AppendChild(grand112);
-            var grand21 = tree.CreateNode("grand21");
-            child2.AppendChild(grand21);
-            child1.RemoveChild(grand12);
+            Console.WriteLine("Enter a Value from 0 to 1023!");
+            string numberString = Console.ReadLine();
+            Console.WriteLine("Enter a number base!");
+            string toBaseString = Console.ReadLine();
+            Console.WriteLine ("Enter a convert number base!");
+            string startNumberBaseConvertString = Console.ReadLine();
+            int fromBase = Int32.Parse(toBaseString);
+            int toBase = Int32.Parse(startNumberBaseConvertString);
+            int number = Int32.Parse(numberString);
 
-            root.PrintTree();
-        }
-    }    
-    public class TreeNode<T>
-    {
-        public T Data;
-        public List<TreeNode<T>> Children = new List<TreeNode<T>>();
-
-        public TreeNode<T> CreateNode(T data)
-        {
-            TreeNode<T> newNode = new TreeNode<T>
-            {
-                Data = data
-            };
-            return newNode;
-        }
-
-        public void AppendChild(TreeNode<T> child)
-        {
-            Children.Add(child);
-        }
-        public void RemoveChild(TreeNode<T> child)
-        {
-            Children.Remove(child);
-        }
-
-        public void PrintTree(String AddTree = "")
-        {
-            Console.WriteLine(AddTree + Data);
-            foreach (TreeNode<T> child in Children)
-            {
-                child.PrintTree(AddTree + "*");
+            if (0 <= number && number <= 1023){
+            ConvertToBaseFromDecimal(number, fromBase);
+            ConvertToDecimalFromBase(number, fromBase);
+            }
+            else {
+            Console.WriteLine("Value must be between 0 and 1023!");
             }
         }
+        
+       static void ConvertToBaseFromDecimal(int number, int fromBase) {
+                int lastHexalNumber = (number % 10)*(fromBase^0);
+                int secondlastHexalNumber = ((number % 100 - lastHexalNumber)/10)*(fromBase^1);
+                int thirtlastHexalNumber = ((number % 1000 - lastHexalNumber - secondlastHexalNumber)/100)*(fromBase^2);
+                int fourthlastHexalNumber = ((number % 10000 - lastHexalNumber - secondlastHexalNumber - thirtlastHexalNumber)/1000)*(fromBase^3);
+                int FinalHexalNumber=(lastHexalNumber + secondlastHexalNumber + thirtlastHexalNumber + fourthlastHexalNumber);
+                Console.WriteLine("The hexal number of " + number +" is " + FinalHexalNumber);
+       }
+  
+        static void ConvertToDecimalFromBase(int number, int fromBase) {
+                int firstDezimalNumber = (number % fromBase); 
+                int firstDevisionNumber = (number / fromBase);   
+                int secondDezimalNumber = (firstDevisionNumber % fromBase); 
+                int secondDevisionNumber = (firstDevisionNumber / fromBase);
+                int thirtDezimalNumber = (secondDevisionNumber % fromBase); 
+                int thirtDevisionNumber = (secondDevisionNumber / fromBase);
+                int fourthDezimalNumber = (thirtDevisionNumber % fromBase); 
+                int fourthDevisionNumber = (thirtDevisionNumber  / fromBase);
+                string finalDezimalNumberString = (firstDezimalNumber +""+  secondDezimalNumber +""+ thirtDezimalNumber +""+ fourthDezimalNumber);
+                int finalDezimalNumberInt = Int32.Parse(finalDezimalNumberString);
+                Console.WriteLine("The decimal number of the hexal number " + number + " is " + finalDezimalNumberInt);
+        }
+        static void ConvertNumberToBaseFromBase(int number, int fromBase, int endNumberBaseInt){
+            //if(2<= frombase &&)
+        }   //Habe mit Benjamin zusammengearbeitet und wir haben diese Teilaufgabe nicht ausreichend verstanden, um sie zu lösen.
+
     }
 }
