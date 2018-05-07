@@ -12,7 +12,7 @@ namespace Aufgabe4_Generic_Tree
             var tree = new TreeNode<String>();
             var root = tree.CreateNode("root");
             var child1 = tree.CreateNode("child1");
-            var child2 = tree.CreateNode("child1");
+            var child2 = tree.CreateNode("child2");
             root.AppendChild(child1);
             root.AppendChild(child2);
             var grand11 = tree.CreateNode("grand11");
@@ -62,6 +62,11 @@ namespace Aufgabe4_Generic_Tree
             {
                 child.PrintTree(AddTree + "*");
             }
+        }
+
+        public Find(TreeNode<T> child)
+        {
+            return;
         }
     }
 }
