@@ -63,10 +63,5 @@ namespace Aufgabe4_Generic_Tree
                 child.PrintTree(AddTree + "*");
             }
         }
-
-        public Find(TreeNode<T> child)
-        {
-            return;
-        }
     }
 }
