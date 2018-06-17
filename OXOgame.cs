@@ -139,7 +139,6 @@ namespace Aufgabe8_OXO
             if (counter == 9)
             {
                 Console.Clear();
-                int madebyTimG = ' ';
                 Print(matchfield);
                 Console.WriteLine("!!  DRAW  !!");
                     
